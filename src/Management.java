@@ -925,9 +925,7 @@ public class Management {
 
                 if (e.getSource()== searchButton) {
                     StaffDB.DbEditStaff aa = new StaffDB.DbEditStaff(Long.valueOf(National_codeT.getText()));
-
-
-                    if (aa.getAppError()) {
+                    if (!aa.getAppError()) {
                         nameTextField.setText(aa.getName());
                         ageTextField.setText(String.valueOf(aa.getAge()));
                         jobTextField.setText(aa.getJob().toString());
@@ -1052,7 +1050,7 @@ public class Management {
                     PatientsDB.DbEditPatients aa = new PatientsDB.DbEditPatients(Long.valueOf(National_codeT.getText()));
 
 
-                    if (aa.getAppError()) {
+                    if (!aa.getAppError()) {
                         nameT.setText(aa.getName());
                         ageT.setText(String.valueOf(aa.getAge()));
                         sectionLabel.setText(aa.section);
