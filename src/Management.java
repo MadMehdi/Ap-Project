@@ -197,6 +197,7 @@ public class Management {
         JTextField history=new JTextField();
         JLabel historyL=new JLabel("History of patient:");
         JButton backButton=new JButton("Back");
+        JLabel statusLabel = new JLabel();
 
         void pageAdding(){
 
@@ -227,6 +228,7 @@ public class Management {
                 reception.add(patientsboxlabel);
                 reception.add(register);
                 reception.add(backButton);
+                reception.add(statusLabel);
 
             }
             @Override
@@ -251,6 +253,7 @@ public class Management {
                 National_codeL.setBounds(80,190,90,15);
                 register.setBounds(165,290,100,30);
                 backButton.setBounds(165,330,100,20);
+                statusLabel.setBounds(140,360,150,30);
 
 
                 patientsbox.addActionListener(this);
@@ -274,10 +277,20 @@ public class Management {
                     PatientsDB.DbAddPatients addPatients = new PatientsDB.DbAddPatients(patientsSection, patientsName, patientsAge,
                             patientsNationalCode, patientsHistory);
 
+                if (!addPatients.getAppError()) {
                     nameT.setText("");
                     ageT.setText("");
                     National_codeT.setText("");
                     history.setText("");
+
+                    statusLabel.setText("Patient Added Successfully");
+                    statusLabel.setForeground(Color.GREEN);
+                } else if (addPatients.getAppError()) {
+                    statusLabel.setText("Patient Added Failed");
+                    statusLabel.setForeground(Color.RED);
+
+                }
+
 
                 } else if (e.getSource()==backButton) {
                     reception.setVisible(false);
@@ -308,6 +321,7 @@ public class Management {
         JTextField National_codeT=new JTextField();
         JLabel National_code_example=new JLabel("example:22701649997");
         JButton backButton=new JButton("Back");
+        JLabel statusLabel = new JLabel();
 
 
         void pageAdding(){
@@ -338,6 +352,7 @@ public class Management {
                 addStaffFrame.add(staffBoxLabel);
                 addStaffFrame.add(registerButton);
                 addStaffFrame.add(backButton);
+                addStaffFrame.add(statusLabel);
 
             }
             @Override
@@ -360,6 +375,7 @@ public class Management {
                 National_codeL.setBounds(80,190,90,15);
                 registerButton.setBounds(165,210,100,30);
                 backButton.setBounds(165,245,100,20);
+                statusLabel.setBounds(140,280,100,30);
 
 
                 staffComboBox.addActionListener(this);
@@ -381,10 +397,17 @@ public class Management {
                     long staffNationalCode = Long.valueOf(National_codeT.getText());
                     StaffDB.DbAddStaff staffDb = new StaffDB.DbAddStaff(staffName, staffAge, staffJob, staffNationalCode);
 
-                    staffComboBox.removeAllItems();
+                if (!staffDb.appError()) {
                     nameT.setText("");
                     ageT.setText("");
                     National_codeT.setText("");
+
+                    statusLabel.setText("Staff Added Successfully");
+                    statusLabel.setForeground(Color.GREEN);
+                } else if (staffDb.appError()) {
+                    statusLabel.setText("Staff Added Failed");
+                    statusLabel.setForeground(Color.RED);
+                }
                 }
                 else if (e.getSource()==backButton) {
                     addStaffFrame.setVisible(false);
@@ -416,6 +439,7 @@ public class Management {
         JLabel National_code_example=new JLabel("example:22701649997");
         JButton backButton=new JButton("Back");
         JButton searchButton = new JButton("Search");
+        JLabel statusLabel = new JLabel();
 
 
         void pageAdding(){
@@ -447,6 +471,7 @@ public class Management {
                 addStaffFrame.add(editButton);
                 addStaffFrame.add(backButton);
                 addStaffFrame.add(searchButton);
+                addStaffFrame.add(statusLabel);
 
             }
             @Override
@@ -470,7 +495,7 @@ public class Management {
                 searchButton.setBounds(165,105,100,20);
                 editButton.setBounds(165,210,100,30);
                 backButton.setBounds(165,245,100,20);
-
+                statusLabel.setBounds(165,280,100,30);
 
                 staffComboBox.addActionListener(this);
                 searchButton.addActionListener(this);
@@ -488,10 +513,18 @@ public class Management {
                 if (e.getSource()== searchButton) {
                     StaffDB.DbEditStaff aa = new StaffDB.DbEditStaff(Long.valueOf(National_codeT.getText()));
                     StaffDB.DbDeleteStaff ab = new StaffDB.DbDeleteStaff(Long.valueOf(National_codeT.getText()));
+                    if (!ab.getAppError()) {
+                        nameT.setText(aa.getName());
+                        ageT.setText(String.valueOf(aa.getAge()));
+                        staffComboBox.setSelectedItem(aa.getJob().toString());
 
-                    nameT.setText(aa.getName());
-                    ageT.setText(String.valueOf(aa.getAge()));
-                    staffComboBox.setSelectedItem(aa.getJob().toString());
+                        statusLabel.setText("Staff Found Successfully");
+                        statusLabel.setForeground(Color.GREEN);
+                    } else if (ab.getAppError()) {
+                        statusLabel.setForeground(Color.RED);
+                        statusLabel.setText("Staff Not Found");
+
+                    }
                 }
 
                 else if(e.getSource()== editButton){
@@ -502,10 +535,18 @@ public class Management {
                     StaffDB.DbAddStaff staffDb = new StaffDB.DbAddStaff(staffName, staffAge, staffJob, staffNationalCode);
 
 
-                    staffComboBox.removeAllItems();
-                    nameT.setText("");
-                    ageT.setText("");
-                    National_codeT.setText("");
+                    if (!staffDb.appError()) {
+                        nameT.setText("");
+                        ageT.setText("");
+                        National_codeT.setText("");
+
+                        statusLabel.setText("Staff Edited Successfully");
+                        statusLabel.setForeground(Color.GREEN);
+                    } else if (staffDb.appError()) {
+                        statusLabel.setText("Staff FAiled to edit");
+                        statusLabel.setForeground(Color.RED);
+
+                    }
                 }
                 else if (e.getSource()==backButton) {
                     addStaffFrame.setVisible(false);
@@ -539,6 +580,7 @@ public class Management {
         JLabel historyL=new JLabel("History of patient:");
         JButton backButton=new JButton("Back");
         JButton searchButton=new JButton("Search");
+        JLabel statusLAbel = new JLabel();
 
         void pageAdding(){
 
@@ -570,6 +612,7 @@ public class Management {
                 reception.add(editButton);
                 reception.add(backButton);
                 reception.add(searchButton);
+                reception.add(statusLAbel);
 
             }
             @Override
@@ -595,6 +638,7 @@ public class Management {
                 searchButton.setBounds(165,120,100,20);
                 editButton.setBounds(165,290,100,30);
                 backButton.setBounds(165,330,100,20);
+                statusLAbel.setBounds(145,370,100,30);
 
 
                 patientsbox.addActionListener(this);
@@ -613,9 +657,18 @@ public class Management {
                     PatientsDB.DbEditPatients aa = new PatientsDB.DbEditPatients(Long.valueOf(National_codeT.getText()));
                     PatientsDB.DbDeletePatients ab = new PatientsDB.DbDeletePatients(Long.valueOf(National_codeT.getText()));
 
-                    nameT.setText(aa.getName());
-                    ageT.setText(String.valueOf(aa.getAge()));
-                    history.setText(aa.getHistory());
+                    if (!aa.getAppError()) {
+                        nameT.setText(aa.getName());
+                        ageT.setText(String.valueOf(aa.getAge()));
+                        history.setText(aa.getHistory());
+
+                        statusLAbel.setText("Patient Found Successfully");
+                        statusLAbel.setForeground(Color.GREEN);
+                    } else if (ab.appError) {
+                        statusLAbel.setForeground(Color.RED);
+                        statusLAbel.setText("Patient Not Found");
+
+                    }
                 }
 
                 else if(e.getSource()== editButton){
@@ -628,12 +681,20 @@ public class Management {
                     PatientsDB.DbAddPatients addPatients = new PatientsDB.DbAddPatients(patientsSection, patientsName, patientsAge,
                             patientsNationalCode, patientsHistory);
 
-                    patientsbox.removeAllItems();
-                    nameT.setText("");
-                    ageT.setText("");
-                    National_codeT.setText("");
-                    history.setText("");
+                    if (!addPatients.getAppError()) {
+                        patientsbox.removeAllItems();
+                        nameT.setText("");
+                        ageT.setText("");
+                        National_codeT.setText("");
+                        history.setText("");
 
+                        statusLAbel.setText("Patient Edited Successfully");
+                        statusLAbel.setForeground(Color.GREEN);
+                    } else if (addPatients.getAppError()) {
+                        statusLAbel.setForeground(Color.RED);
+                        statusLAbel.setText("Patient Failed to Edit");
+
+                    }
                 } else if (e.getSource()==backButton) {
                     reception.setVisible(false);
                     patientsMFrame.setVisible(true);
@@ -658,6 +719,7 @@ public class Management {
         JLabel National_codeEx=new JLabel("example: 2270164997");
         JButton deleteButton =new JButton("Delete");
         JButton backButton =new JButton("Back");
+        JLabel statusLabel = new JLabel();
 
         @Override
         public void adding(){
@@ -667,6 +729,7 @@ public class Management {
             del.add(National_codeEx);
             del.add(deleteButton);
             del.add(backButton);
+            del.add(statusLabel);
 
         }
         @Override
@@ -682,6 +745,7 @@ public class Management {
             National_codeEx.setBounds(260,150,120,15);
             deleteButton.setBounds(180,180,100,25);
             backButton.setBounds(180,220,100,25);
+            statusLabel.setBounds(180,260,100,30);
             del.setVisible(true);
 
             deleteButton.addActionListener(this);
@@ -693,6 +757,13 @@ public class Management {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()== deleteButton) {
                 StaffDB.DbDeleteStaff deleteStaff = new StaffDB.DbDeleteStaff(Long.valueOf(National_codeT.getText()));
+                if (!deleteStaff.getAppError()) {
+                    statusLabel.setText("Staff Deleted Successfully");
+                    statusLabel.setForeground(Color.GREEN);
+                } else if (deleteStaff.getAppError()) {
+                    statusLabel.setForeground(Color.RED);
+                    statusLabel.setText("Staff Failed to Delete");
+                }
             } else if (e.getSource()== backButton) {
                 del.setVisible(false);
                 staffMFrame.setVisible(true);
@@ -710,6 +781,7 @@ public class Management {
         JTextField National_codeT  =  new JTextField();
         JLabel National_codeEx=new JLabel("example: 2270164997");
         JButton dischargeButton =new JButton("Discharge");
+        JLabel statusLabel = new JLabel();
 
         @Override
         public void adding(){
@@ -717,6 +789,7 @@ public class Management {
             del.add(National_codeT);
             del.add(National_codeL);
             del.add(National_codeEx);
+            del.add(statusLabel);
 
         }
         @Override
@@ -731,6 +804,7 @@ public class Management {
             National_codeT.setBounds(180,150,70,15);
             National_codeEx.setBounds(260,150,120,15);
             dischargeButton.setBounds(170,180,110,35);
+            statusLabel.setBounds(170,220,100,30);
             del.setVisible(true);
 
             dischargeButton.addActionListener(this);
@@ -741,6 +815,13 @@ public class Management {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource()== dischargeButton) {
                 PatientsDB.DbDeletePatients deletePatients = new PatientsDB.DbDeletePatients(Long.valueOf(National_codeT.getText()));
+                if (!deletePatients.appError){
+                    statusLabel.setText("Patient Deleted Successfully");
+                    statusLabel.setForeground(Color.GREEN);
+                } else if (deletePatients.appError) {
+                    statusLabel.setForeground(Color.RED);
+                    statusLabel.setText("Patient Failed to Delete");
+                }
             }
         }
     }
@@ -755,6 +836,7 @@ public class Management {
         JLabel nameL=new JLabel("Name:");
         JLabel ageL=new JLabel("age of staff:");
         JLabel National_codeL=new JLabel("National code:");
+        JLabel statusLabel = new JLabel();
 
 
 
@@ -788,6 +870,7 @@ public class Management {
                 addStaffFrame.add(nameL);
                 addStaffFrame.add(ageL);
                 addStaffFrame.add(National_codeL);
+                addStaffFrame.add(statusLabel);
 
 
                 addStaffFrame.add(National_codeT);
@@ -824,6 +907,7 @@ public class Management {
                 searchButton.setBounds(165,105,100,20);
 
                 backButton.setBounds(165,210,100,20);
+                statusLabel.setBounds(165,250,100,30);
 
 
 
@@ -843,9 +927,17 @@ public class Management {
                     StaffDB.DbEditStaff aa = new StaffDB.DbEditStaff(Long.valueOf(National_codeT.getText()));
 
 
-                    nameTextField.setText(aa.getName());
-                    ageTextField.setText(String.valueOf(aa.getAge()));
-                    jobTextField.setText(aa.getJob().toString());
+                    if (aa.getAppError()) {
+                        nameTextField.setText(aa.getName());
+                        ageTextField.setText(String.valueOf(aa.getAge()));
+                        jobTextField.setText(aa.getJob().toString());
+                        statusLabel.setText("Staff Found");
+                        statusLabel.setForeground(Color.GREEN);
+                    } else if (aa.getAppError()) {
+                        statusLabel.setForeground(Color.RED);
+                        statusLabel.setText("Staff Not Found");
+
+                    }
                 }
 
 
@@ -879,7 +971,7 @@ public class Management {
         JButton backButton=new JButton("Back");
         JButton searchButton=new JButton("Search");
         JTextField sectionLabel=new JTextField();
-
+        JLabel statusLabel = new JLabel();
 
         void pageAdding(){
 
@@ -911,6 +1003,7 @@ public class Management {
 
                 reception.add(backButton);
                 reception.add(searchButton);
+                reception.add(statusLabel);
 
             }
             @Override
@@ -936,6 +1029,7 @@ public class Management {
                 searchButton.setBounds(165,120,100,20);
 
                 backButton.setBounds(165,290,100,20);
+                statusLabel.setBounds(165,330,100,30);
                 ageT.setEditable(false);
                 nameT.setEditable(false);
                 sectionLabel.setEditable(false);
@@ -958,10 +1052,18 @@ public class Management {
                     PatientsDB.DbEditPatients aa = new PatientsDB.DbEditPatients(Long.valueOf(National_codeT.getText()));
 
 
-                    nameT.setText(aa.getName());
-                    ageT.setText(String.valueOf(aa.getAge()));
-                    sectionLabel.setText(aa.section);
-                    history.setText(aa.getHistory());
+                    if (aa.getAppError()) {
+                        nameT.setText(aa.getName());
+                        ageT.setText(String.valueOf(aa.getAge()));
+                        sectionLabel.setText(aa.section);
+                        history.setText(aa.getHistory());
+                        statusLabel.setText("Patient Found");
+                        statusLabel.setForeground(Color.GREEN);
+                    } else if (aa.getAppError()) {
+                        statusLabel.setForeground(Color.RED);
+                        statusLabel.setText("Patient Not Found");
+
+                    }
                 }
 
                 else if (e.getSource()==backButton) {

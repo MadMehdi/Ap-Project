@@ -11,6 +11,7 @@ public class StaffDB {
         int age;
         String job;
         long nationalCode;
+        boolean appError;
 
         public DbAddStaff(String name, int age, String job, long nationalCode) {
             String url = "jdbc:mysql://localhost:3306/apdb";
@@ -46,6 +47,7 @@ public class StaffDB {
                 int rowsInserted = preparedStatement.executeUpdate();
                 if (rowsInserted > 0) {
                     System.out.println("Data inserted successfully!");
+                    appError = false;
                 }
 
                 // Close the connection
@@ -53,7 +55,11 @@ public class StaffDB {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                appError = true;
             }
+        }
+        public boolean appError() {
+            return appError;
         }
     }
 
@@ -62,6 +68,8 @@ public class StaffDB {
         String job;
         String name;
         int age;
+        boolean appError;
+
         DbEditStaff(long nationalCode){
             // Database connection details
             String url = "jdbc:mysql://localhost:3306/apdb";
@@ -91,6 +99,7 @@ public class StaffDB {
                     name = resultSet.getString("name");
                     age = resultSet.getInt("age");
                     nationalCode = resultSet.getLong("nationalcode");
+                    appError = false;
 
                 }
 
@@ -100,6 +109,7 @@ public class StaffDB {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                appError = true;
             }
         }
         String getName(){
@@ -111,10 +121,15 @@ public class StaffDB {
         String getJob(){
             return job;
         }
+        boolean getAppError(){
+            return appError;
+        }
 
     }
 
     public static class DbDeleteStaff {
+        boolean appError;
+
         DbDeleteStaff(Long nationalCode) {
             // Database connection details
             String url = "jdbc:mysql://localhost:3306/apdb"; // Replace with your database name
@@ -147,13 +162,18 @@ public class StaffDB {
                 } else {
                     System.out.println("No row found with the specified national code.");
                 }
+                appError = false;
 
                 // Close the connection
                 connection.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
+                appError = true;
             }
+        }
+        boolean getAppError() {
+            return appError;
         }
     }
 

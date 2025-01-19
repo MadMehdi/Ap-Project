@@ -12,6 +12,7 @@ public class PatientsDB {
         int age;
         long nationalCode;
         String history;
+        boolean appError;
         public DbAddPatients(String section, String name, int age, long nationalCode,  String history) {
             String url = "jdbc:mysql://localhost:3306/apdb";
             String username = "root";
@@ -48,6 +49,7 @@ public class PatientsDB {
                 int rowsInserted = preparedStatement.executeUpdate();
                 if (rowsInserted > 0) {
                     System.out.println("Data inserted successfully!");
+                appError = false;
                 }
 
                 // Close the connection
@@ -55,7 +57,11 @@ public class PatientsDB {
 
             } catch (Exception e) {
                 e.printStackTrace();
+                appError = true;
             }
+        }
+        boolean getAppError() {
+            return appError;
         }
     }
 
@@ -65,6 +71,8 @@ public class PatientsDB {
         int age;
         long nationalCode;
         String history;
+        boolean appError;
+
         DbEditPatients(long nationalCode){
             // Database connection details
             String url = "jdbc:mysql://localhost:3306/apdb";
@@ -97,13 +105,14 @@ public class PatientsDB {
                     history = resultSet.getString("history");
 
                 }
-
+                appError = false;
 
                 // Close the connection
                 connection.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
+                appError = true;
             }
         }
         String getSection(){
@@ -118,10 +127,15 @@ public class PatientsDB {
         String getHistory(){
             return history;
         }
+        boolean getAppError(){
+            return appError;
+        }
 
     }
 
     public static class DbDeletePatients {
+        boolean appError;
+
         DbDeletePatients(Long nationalCode) {
             // Database connection details
             String url = "jdbc:mysql://localhost:3306/apdb"; // Replace with your database name
@@ -154,12 +168,14 @@ public class PatientsDB {
                 } else {
                     System.out.println("No row found with the specified national code.");
                 }
+                appError = false;
 
                 // Close the connection
                 connection.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
+                appError = true;
             }
         }
     }
