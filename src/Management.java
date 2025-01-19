@@ -481,7 +481,7 @@ public class Management {
 
                 if (e.getSource()== searchButton) {
                     StaffDB.DbEditStaff aa = new StaffDB.DbEditStaff(Long.valueOf(National_codeT.getText()));
-
+                    StaffDB.DbDeleteStaff ab = new StaffDB.DbDeleteStaff(Long.valueOf(National_codeT.getText()));
 
                     nameT.setText(aa.getName());
                     ageT.setText(String.valueOf(aa.getAge()));
@@ -494,7 +494,7 @@ public class Management {
                     int staffAge = Integer.valueOf(ageT.getText());
                     long staffNationalCode = Long.valueOf(National_codeT.getText());
                     StaffDB.DbAddStaff staffDb = new StaffDB.DbAddStaff(staffName, staffAge, staffJob, staffNationalCode);
-                    StaffDB.DbDeleteStaff ab = new StaffDB.DbDeleteStaff(Long.valueOf(National_codeT.getText()));
+
 
                     staffComboBox.removeAllItems();
                     nameT.setText("");
@@ -603,7 +603,7 @@ public class Management {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource()== searchButton) {
                     PatientsDB.DbEditPatients aa = new PatientsDB.DbEditPatients(Long.valueOf(National_codeT.getText()));
-
+                    PatientsDB.DbDeletePatients ab = new PatientsDB.DbDeletePatients(Long.valueOf(National_codeT.getText()));
 
                     nameT.setText(aa.getName());
                     ageT.setText(String.valueOf(aa.getAge()));
@@ -619,7 +619,6 @@ public class Management {
 
                     PatientsDB.DbAddPatients addPatients = new PatientsDB.DbAddPatients(patientsSection, patientsName, patientsAge,
                             patientsNationalCode, patientsHistory);
-                    PatientsDB.DbDeletePatients ab = new PatientsDB.DbDeletePatients(Long.valueOf(National_codeT.getText()));
 
                     patientsbox.removeAllItems();
                     nameT.setText("");
