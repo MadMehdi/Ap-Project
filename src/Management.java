@@ -201,13 +201,14 @@ public class Management {
         void pageAdding(){
 
         }
-        public class patient_reception implements ActionListener{
+        public class patient_reception implements ActionListener, Adder{
             patient_reception(){
                 adding();
                 pageAttribute();
 
             }
-            void adding(){
+            @Override
+            public void adding(){
                 reception.add(ageEx);
                 reception.add(historyL);
                 reception.add(history);
@@ -228,7 +229,8 @@ public class Management {
                 reception.add(backButton);
 
             }
-            void pageAttribute(){
+            @Override
+            public void pageAttribute(){
                 reception.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 reception.setLocationRelativeTo(null);
                 reception.setLayout(null);
@@ -311,7 +313,7 @@ public class Management {
         void pageAdding(){
 
         }
-        public class patient_reception implements ActionListener{
+        public class patient_reception implements ActionListener, Adder{
 
 
             patient_reception(){
@@ -319,7 +321,8 @@ public class Management {
                 pageAttribute();
 
             }
-            void adding(){
+            @Override
+            public void adding(){
                 addStaffFrame.add(ageEx);
                 addStaffFrame.add(ageL);
                 addStaffFrame.add(National_code_example);
@@ -337,7 +340,8 @@ public class Management {
                 addStaffFrame.add(backButton);
 
             }
-            void pageAttribute(){
+            @Override
+            public void pageAttribute(){
                 addStaffFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 addStaffFrame.setLocationRelativeTo(null);
                 addStaffFrame.setLayout(null);
@@ -417,7 +421,7 @@ public class Management {
         void pageAdding(){
 
         }
-        public class patient_reception implements ActionListener{
+        public class patient_reception implements ActionListener, Adder{
 
 
             patient_reception(){
@@ -425,7 +429,8 @@ public class Management {
                 pageAttribute();
 
             }
-            void adding(){
+            @Override
+            public void adding(){
                 addStaffFrame.add(ageEx);
                 addStaffFrame.add(ageL);
                 addStaffFrame.add(National_code_example);
@@ -444,7 +449,8 @@ public class Management {
                 addStaffFrame.add(searchButton);
 
             }
-            void pageAttribute(){
+            @Override
+            public void pageAttribute(){
                 addStaffFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 addStaffFrame.setLocationRelativeTo(null);
                 addStaffFrame.setLayout(null);
@@ -537,13 +543,14 @@ public class Management {
         void pageAdding(){
 
         }
-        public class patient_reception implements ActionListener{
+        public class patient_reception implements ActionListener, Adder{
             patient_reception(){
                 adding();
                 pageAttribute();
 
             }
-            void adding(){
+            @Override
+            public void adding(){
                 reception.add(ageEx);
                 reception.add(historyL);
                 reception.add(history);
@@ -565,7 +572,8 @@ public class Management {
                 reception.add(searchButton);
 
             }
-            void pageAttribute(){
+            @Override
+            public void pageAttribute(){
                 reception.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 reception.setLocationRelativeTo(null);
                 reception.setLayout(null);
@@ -639,7 +647,7 @@ public class Management {
 
     }
 
-    public class DeleteStaffClass implements ActionListener {
+    public class DeleteStaffClass implements ActionListener, Adder {
         DeleteStaffClass(){
             adding();
             pageAttribute();
@@ -651,7 +659,8 @@ public class Management {
         JButton deleteButton =new JButton("Delete");
         JButton backButton =new JButton("Back");
 
-        void adding(){
+        @Override
+        public void adding(){
             del.add(deleteButton);
             del.add(National_codeT);
             del.add(National_codeL);
@@ -660,7 +669,8 @@ public class Management {
             del.add(backButton);
 
         }
-        void pageAttribute(){
+        @Override
+        public void pageAttribute(){
 
             del.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             del.setLocationRelativeTo(null);
@@ -690,7 +700,7 @@ public class Management {
         }
     }
 
-    public class DeletePatientsClass implements ActionListener{
+    public class DeletePatientsClass implements ActionListener, Adder{
         DeletePatientsClass(){
             adding();
             pageAttribute();
@@ -701,14 +711,16 @@ public class Management {
         JLabel National_codeEx=new JLabel("example: 2270164997");
         JButton dischargeButton =new JButton("Discharge");
 
-        void adding(){
+        @Override
+        public void adding(){
             del.add(dischargeButton);
             del.add(National_codeT);
             del.add(National_codeL);
             del.add(National_codeEx);
 
         }
-        void pageAttribute(){
+        @Override
+        public void pageAttribute(){
 
             del.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             del.setLocationRelativeTo(null);
@@ -758,7 +770,7 @@ public class Management {
         void pageAdding(){
 
         }
-        public class patient_reception implements ActionListener{
+        public class patient_reception implements ActionListener, Adder{
 
 
             patient_reception(){
@@ -766,7 +778,8 @@ public class Management {
                 pageAttribute();
 
             }
-            void adding(){
+            @Override
+            public void adding(){
                 addStaffFrame.add(ageTextField);
                 addStaffFrame.add(ageL);
                 addStaffFrame.add(National_code_example);
@@ -788,7 +801,8 @@ public class Management {
                 jobTextField.setEditable(false);
 
             }
-            void pageAttribute(){
+            @Override
+            public void pageAttribute(){
                 addStaffFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 addStaffFrame.setLocationRelativeTo(null);
                 addStaffFrame.setLayout(null);
@@ -870,13 +884,14 @@ public class Management {
         void pageAdding(){
 
         }
-        public class patient_reception implements ActionListener{
+        public class patient_reception implements ActionListener, Adder{
             patient_reception(){
                 adding();
                 pageAttribute();
 
             }
-            void adding(){
+            @Override
+            public void adding(){
 
                 reception.add(historyL);
                 reception.add(history);
@@ -898,7 +913,8 @@ public class Management {
                 reception.add(searchButton);
 
             }
-            void pageAttribute(){
+            @Override
+            public void pageAttribute(){
                 reception.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 reception.setLocationRelativeTo(null);
                 reception.setLayout(null);
